@@ -1,0 +1,74 @@
+name: Grails 8 CI
+
+on:
+  push:
+    branches: [ grails8 ]
+  pull_request:
+    branches: [ grails8 ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-initial:
+    runs-on: ubuntu-latest
+    name: initial
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Unit tests
+        working-directory: initial
+        run: |
+          chmod +x gradlew
+          ./gradlew test --console=plain --stacktrace
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports-initial
+          path: initial/build/reports/tests/
+          if-no-files-found: ignore
+
+  test-complete:
+    runs-on: ubuntu-latest
+    name: complete
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Unit tests
+        working-directory: complete
+        run: |
+          chmod +x gradlew
+          ./gradlew test --console=plain --stacktrace
+
+      - name: Integration tests
+        working-directory: complete
+        run: ./gradlew integrationTest --console=plain --stacktrace
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports-complete
+          path: complete/build/reports/tests/
+          if-no-files-found: ignore

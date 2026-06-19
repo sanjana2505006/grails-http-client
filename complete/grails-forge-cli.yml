@@ -1,0 +1,8 @@
+# Document how this app was generated (re-run when Forge/CLI is available):
+# grails create-app example --profile=rest-api --inplace
+#   -f postgres,database-migration,views-json,testcontainers,grails-micronaut,micronaut-http-client
+# JDK 25+ required for Micronaut features at generation time.
+applicationType: rest-api
+defaultPackage: example
+name: example
+grailsVersion: 8.0.0-SNAPSHOT
