@@ -16,15 +16,8 @@ environments:
       url: jdbc:postgresql://localhost:5432/devDb?tcpKeepAlive=true
   test:
     dataSource:
-      dbCreate: create-drop
-      url: jdbc:tc:postgresql:16:///postgres
-      driverClassName: org.testcontainers.jdbc.ContainerDatabaseDriver
-    hibernate:
-      dialect: org.hibernate.dialect.PostgreSQLDialect
-    grails:
-      plugin:
-        databasemigration:
-          updateOnStart: false
+      dbCreate: update
+      url: jdbc:postgresql://localhost:5432/testDb?tcpKeepAlive=true
   production:
     dataSource:
       dbCreate: none
@@ -67,8 +60,3 @@ grails:
   views:
     default:
       codec: html
-micronaut:
-  codec:
-    json:
-      additionalTypes:
-        - text/javascript

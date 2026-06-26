@@ -1,11 +1,13 @@
 package example
 
-import io.micronaut.http.annotation.Get
-import io.micronaut.http.client.annotation.Client
+import groovy.transform.CompileStatic
+import org.springframework.web.service.annotation.GetExchange
+import org.springframework.web.service.annotation.HttpExchange
 
-@Client('https://itunes.apple.com/')
+@CompileStatic
+@HttpExchange(url = 'https://itunes.apple.com')
 interface ItunesClient {
 
-    @Get('/search?limit=25&media=music&entity=album&term={term}')
+    @GetExchange('/search?limit=25&media=music&entity=album&term={term}')
     SearchResult search(String term)
 }

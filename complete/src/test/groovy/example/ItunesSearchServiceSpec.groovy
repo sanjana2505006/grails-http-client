@@ -6,7 +6,7 @@ class ItunesSearchServiceSpec extends Specification {
 
     ItunesSearchService service = new ItunesSearchService()
 
-    void 'searchAlbums delegates to the declarative ItunesClient'() {
+    void 'searchAlbums delegates to the ItunesClient HTTP service'() {
         given:
         def client = Mock(ItunesClient)
         service.itunesClient = client
