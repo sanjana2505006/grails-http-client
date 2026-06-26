@@ -16,7 +16,7 @@ This approach uses the same Spring stack Grails 8 already runs on. No Micronaut 
 ## Running
 
 ```bash
-git clone -b grails8 https://github.com/sanjana2505006/grails-http-client.git
+git clone -b grails8 https://github.com/grails-guides/grails-http-client.git
 cd grails-http-client/complete
 ./gradlew test integrationTest
 ```
@@ -43,7 +43,7 @@ Unit specs under `src/test/groovy/` cover domain constraints and service delegat
 
 ## Requirements
 
-- **JDK 21**
+- **JDK 21** (Temurin recommended; the Gradle build enforces Java 21+)
 - **Docker** running locally — required for `integrationTest` (Testcontainers PostgreSQL). Unit tests (`./gradlew test`) do not need Docker.
 - **PostgreSQL** on `localhost:5432` — required for `./gradlew bootRun` (default database `devDb` in `application.yml`)
 

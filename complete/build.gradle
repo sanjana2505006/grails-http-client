@@ -81,6 +81,7 @@ repositories {
 
 dependencies {
     profile "org.apache.grails.profiles:rest-api"
+    developmentOnly "org.springframework.boot:spring-boot-devtools"
     implementation platform("org.apache.grails:grails-bom:$grailsVersion")
     implementation "org.apache.grails:grails-core"
     implementation "org.apache.grails:grails-data-hibernate5"
@@ -116,8 +117,11 @@ dependencies {
 
     integrationTestImplementation "org.apache.grails:grails-testing-support-datamapping"
     integrationTestImplementation "org.apache.grails:grails-testing-support-views-gson"
-    integrationTestImplementation "org.apache.grails:grails-testing-support-web"
     integrationTestImplementation "org.spockframework:spock-core"
+    integrationTestImplementation platform("org.testcontainers:testcontainers-bom:$testcontainersVersion")
+    integrationTestImplementation "org.testcontainers:postgresql"
+    integrationTestImplementation "org.testcontainers:spock"
+    integrationTestImplementation "org.testcontainers:testcontainers"
 }
 
 compileJava.options.release = 21
